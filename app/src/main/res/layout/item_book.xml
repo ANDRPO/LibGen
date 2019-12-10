@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#121212"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/item_i_book"
+        android:layout_width="100dp"
+        android:layout_height="135dp"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/item_tv_namebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/item_i_book"
+        android:fontFamily="@font/partnercondensed"
+        android:text="Name: "
+        android:textColor="#F0FFFFFF" />
+
+    <TextView
+        android:id="@+id/item_tv_authorbook"
+        android:layout_width="wrap_content"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_tv_namebook"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/item_i_book"
+        android:fontFamily="@font/partnercondensed"
+        android:text="Author: "
+        android:textColor="#F0FFFFFF" />
+
+    <TextView
+        android:id="@+id/item_tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_tv_authorbook"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/item_i_book"
+        android:fontFamily="@font/partnercondensed"
+        android:text="Year: "
+        android:textColor="#F0FFFFFF" />
+
+    <TextView
+        android:id="@+id/item_tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_below="@id/item_tv_year"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/item_i_book"
+        android:fontFamily="@font/partnercondensed"
+        android:text="Description: "
+        android:maxLength="100"
+        android:textColor="#F0FFFFFF" />
+
+
+</RelativeLayout>
