@@ -10,7 +10,6 @@ public class ListFull {
     public String extension;
     public String locator;
     public String coverurl;
-    public String pagesinfile;
     public String descr;
     public String md5;
 
@@ -24,7 +23,6 @@ public class ListFull {
             String extension,
             String locator,
             String coverurl,
-            String pagesinfile,
             String descr,
             String md5) {
         this.author = author;
@@ -36,7 +34,6 @@ public class ListFull {
         this.extension = extension;
         this.locator = locator;
         this.coverurl = coverurl;
-        this.pagesinfile = pagesinfile;
         this.descr = descr;
         this.md5 = md5;
     }
@@ -111,14 +108,6 @@ public class ListFull {
 
     public void setCoverurl(String coverurl) {
         this.coverurl = coverurl;
-    }
-
-    public String getPagesinfile() {
-        return pagesinfile;
-    }
-
-    public void setPagesinfile(String pagesinfile) {
-        this.pagesinfile = pagesinfile;
     }
 
     public String getDescr() {

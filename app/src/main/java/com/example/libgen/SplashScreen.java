@@ -8,13 +8,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.libgen.Adapters.Custom_book;
+import com.example.libgen.Lists.ListFull;
 import com.google.gson.JsonElement;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,41 +32,17 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
 
         try {
+            StaticDate staticDate = new StaticDate();
             Date currentDate = new Date();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             String dateTextLast = dateFormat.format(currentDate);
-
-            Calendar c = Calendar.getInstance();
-            c.setTime(dateFormat.parse(dateTextLast));
-            c.add(Calendar.DATE, -1);  // number of days to add
-            String dateText = dateFormat.format(c.getTime());  // dt is now the new date
+            String dateText = date(dateTextLast, dateFormat);
 
             Log.e("Актуальная дата:", dateTextLast);
             Log.e("Дата-1", dateText);
 
+            staticDate.GlobalPOST(dateText, dateTextLast, getApplicationContext());
 
-            Network.getInstance().getApi().sortdate(dateText, dateTextLast).enqueue(new Callback<JsonElement>() {
-                @Override
-                public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                    Log.e("RESPONCE:", response.body().toString());
-                    Log.e("SIZE:", String.valueOf(response.body().getAsJsonArray().size()));
-                //    Log.e("1PARSE", response.body().getAsJsonArray().get(0).getAsJsonObject().get("id").toString());
-                    for (int i = 0; i < response.body().getAsJsonArray().size(); i++) {
-                        StaticDate.listID.add(response.body().getAsJsonArray().get(i).getAsJsonObject().get("id").getAsInt());
-                        Log.e("ID:", response.body().getAsJsonArray().get(i).getAsJsonObject().get("id").toString());
-                    }
-                    Log.e("SUCCESS!", "SUCCESS!");
-
-                }
-
-                @Override
-                public void onFailure(Call<JsonElement> call, Throwable t) {
-                    Log.e("CALLERROR:", call.toString());
-                    Log.e("ERROR:", t.toString());
-                    Toast.makeText(getApplicationContext(), "Connection error!", Toast.LENGTH_LONG).show();
-                }
-            });
-            Log.e("STACK ID", StaticDate.listID.toString());
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Connection error!", Toast.LENGTH_LONG).show();
         }
@@ -71,8 +51,16 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                    startActivity(new Intent(SplashScreen.this, Adapter_book.class));
+
+                startActivity(new Intent(SplashScreen.this, Adapter_book.class));
             }
-        },3000);
+        }, 5000);
+    }
+
+    public String date(String dateTextLast, DateFormat dateFormat) throws ParseException {
+        Calendar c = Calendar.getInstance();
+        c.setTime(Objects.requireNonNull(dateFormat.parse(dateTextLast)));
+        c.add(Calendar.DATE, -1);  // number of days to add
+        return dateFormat.format(c.getTime());
     }
 }

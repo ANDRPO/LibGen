@@ -1,6 +1,8 @@
 package com.example.libgen.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +14,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.libgen.FullBookDescription;
 import com.example.libgen.Lists.ListFull;
 import com.example.libgen.R;
 import com.squareup.picasso.Picasso;
+
+import org.jsoup.Jsoup;
 
 import java.util.List;
 
@@ -33,7 +38,7 @@ public class Custom_book extends ArrayAdapter<ListFull> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = inflater.inflate(listitemId, parent, false);
 
         ImageView imagebook = v.findViewById(R.id.item_i_book);
@@ -54,12 +59,19 @@ public class Custom_book extends ArrayAdapter<ListFull> {
         namebook.append(listFull.getTitle());
         authorbook.append(listFull.getAuthor());
         yearbook.append(listFull.getYear());
-        descriptionbook.append(listFull.getDescr());
+        FullBookDescription fullBookDescription = new FullBookDescription();
+        if(!listFull.getDescr().equals("\"\"")){
+            descriptionbook.append(fullBookDescription.CorrectConvertHtmlToText(listFull.getDescr()));
+        }
+        else
+            descriptionbook.append("\"No\"");
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // getContext().startActivity(new Intent(getContext(), MapsActivity.class));
+                Intent intent = new Intent(getContext(), FullBookDescription.class);
+                intent.putExtra("position", position);
+                getContext().startActivity(intent);
             }
         });
 
