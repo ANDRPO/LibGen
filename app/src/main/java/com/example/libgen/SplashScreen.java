@@ -51,10 +51,10 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 startActivity(new Intent(SplashScreen.this, Adapter_book.class));
+                finish();
             }
-        }, 5000);
+        }, 3000);
     }
 
     public String date(String dateTextLast, DateFormat dateFormat) throws ParseException {

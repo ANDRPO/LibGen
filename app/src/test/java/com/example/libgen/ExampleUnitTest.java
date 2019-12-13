@@ -45,12 +45,12 @@ public class ExampleUnitTest extends FullBookDescription{
 
     @Test
     public void ParseHtmlFormatToTXT()  {
-
-        FullBookDescription activity = mock(FullBookDescription.class);
-
-        String stringtxt = "Он словно вырезан из камня, стоек и неподвижен в отличие от его противников.Дух и жизненная сила в нём достигла совершенства.Но вот беда — никто не смеет принять его вызов.";
-        assertEquals(activity.CorrectConvertHtmlToText("<p>Он словно вырезан из <b>камня</b>, стоек и неподвижен в отличие от его противников.<i>Дух и жизненная сила</i> в нём достигла <b><i>совершенства</i></b>.Но вот беда — никто не смеет принять его вызов.</p>"), stringtxt);
+        FullBookDescription fullBookDescription = new FullBookDescription();
+        String correct = "http://93.174.95.29/covers/2448000/60406c45724cceeeee444fd861bc6f50-g.jpg";
+        String cover = "\"2448000/60406c45724cceeeee444fd861bc6f50-g.jpg\"";
+        assertEquals(fullBookDescription.MakeLinkCover(cover), correct);
     }
+
 
 
 

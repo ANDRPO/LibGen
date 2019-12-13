@@ -41,7 +41,7 @@ public class FullBookDescription extends AppCompatActivity {
 
         Log.e("LIST", StaticDate.listFull.get(position).title);
 
-        final String urlImage = "http://93.174.95.29/covers/" + StaticDate.listFull.get(position).coverurl.replace("\"", "");
+        final String urlImage = MakeLinkCover(StaticDate.listFull.get(position).coverurl);
         Picasso.get().load(urlImage).error(R.drawable.ic_error).placeholder(R.drawable.ic_sync).into(imagebook);
         fullbook_name.append(StaticDate.listFull.get(position).title);
         fullbook_author.append(StaticDate.listFull.get(position).author);
@@ -66,7 +66,7 @@ public class FullBookDescription extends AppCompatActivity {
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://93.174.95.29/main/2448000/" + StaticDate.listFull.get(position).md5.replace("\"", "") + "/" + StaticDate.listFull.get(position).locator.replace("\"", "")));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, MakeLinkDownload(StaticDate.listFull.get(position).md5, StaticDate.listFull.get(position).locator));
                 startActivity(browserIntent);
             }
         });
@@ -95,10 +95,20 @@ public class FullBookDescription extends AppCompatActivity {
         filesize = filesize.replace("\"", "");
         double result = Double.parseDouble(filesize) / 1048576;
         String formattedDouble = new DecimalFormat("#0.00").format(result);
-        return formattedDouble;
+        return formattedDouble + "MB";
     }
 
     public String CorrectConvertHtmlToText(String description){
         return Html.fromHtml(description).toString().replace("\\r", "").replace("\\n", "").replace("\\", "");
+    }
+
+    public Uri MakeLinkDownload(String md5, String locator){
+        Uri result = Uri.parse("http://93.174.95.29/main/2448000/" + md5.replace("\"", "") + "/" + locator.replace("\"", ""));
+        return result;
+    }
+
+    public String MakeLinkCover(String cover){
+        String result = "http://93.174.95.29/covers/" + cover.replace("\"", "");
+        return result;
     }
 }

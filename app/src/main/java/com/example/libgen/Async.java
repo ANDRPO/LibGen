@@ -45,8 +45,8 @@ public class Async extends AsyncTask<Void, Void, Void> {
                             else {
                                 Toast.makeText(StaticDate.context, "INCORRECT RESPONSE", Toast.LENGTH_LONG).show();
                             }
-                            Custom_book custom_book = new Custom_book(StaticDate.context, R.layout.item_book, StaticDate.listFull);
-                            StaticDate.listView.setAdapter(custom_book);
+                           // Custom_book custom_book = new Custom_book(StaticDate.context, R.layout.item_book, StaticDate.listFull);
+                           // StaticDate.listView.setAdapter(custom_book);
 
                         }
 
