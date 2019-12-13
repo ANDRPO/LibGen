@@ -45,9 +45,9 @@ public class FullBookDescription extends AppCompatActivity {
         Picasso.get().load(urlImage).error(R.drawable.ic_error).placeholder(R.drawable.ic_sync).into(imagebook);
         fullbook_name.append(StaticDate.listFull.get(position).title);
         fullbook_author.append(StaticDate.listFull.get(position).author);
-        fullbook_year.append(StaticDate.listFull.get(position).year);
-        fullbook_pages.append(StaticDate.listFull.get(position).pages);
-        fullbook_filesize.append(MBfile(StaticDate.listFull.get(position).filesize) + "MB");
+        fullbook_year.append(MakeCorrectYearOrPages(StaticDate.listFull.get(position).year));
+        fullbook_pages.append(MakeCorrectYearOrPages(StaticDate.listFull.get(position).pages));
+        fullbook_filesize.append(MBfile(StaticDate.listFull.get(position).filesize));
         fullbook_format.append(StaticDate.listFull.get(position).extension);
 
 
@@ -109,6 +109,15 @@ public class FullBookDescription extends AppCompatActivity {
 
     public String MakeLinkCover(String cover){
         String result = "http://93.174.95.29/covers/" + cover.replace("\"", "");
+        return result;
+    }
+
+    public String MakeCorrectYearOrPages(String inYearOrPages){
+        String result;
+        if(!inYearOrPages.equals("\"0\""))
+            result = inYearOrPages.replace("\"", "");
+        else
+            result = "\"No\"";
         return result;
     }
 }

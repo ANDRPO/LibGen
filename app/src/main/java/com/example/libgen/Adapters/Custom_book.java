@@ -40,6 +40,7 @@ public class Custom_book extends ArrayAdapter<ListFull> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = inflater.inflate(listitemId, parent, false);
+        FullBookDescription fullBookDescription = new FullBookDescription();
 
         ImageView imagebook = v.findViewById(R.id.item_i_book);
 
@@ -58,8 +59,7 @@ public class Custom_book extends ArrayAdapter<ListFull> {
 
         namebook.append(listFull.getTitle());
         authorbook.append(listFull.getAuthor());
-        yearbook.append(listFull.getYear());
-        FullBookDescription fullBookDescription = new FullBookDescription();
+        yearbook.append(fullBookDescription.MakeCorrectYearOrPages(listFull.getYear()));
         if(!listFull.getDescr().equals("\"\"")){
             descriptionbook.append(fullBookDescription.CorrectConvertHtmlToText(listFull.getDescr()));
         }
