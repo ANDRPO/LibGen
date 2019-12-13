@@ -26,9 +26,16 @@ public class RobolectricUnitTest {
     public void MakeLinkDownload(){
         FullBookDescription fullBookDescription = new FullBookDescription();
         Uri correct = Uri.parse("http://93.174.95.29/main/2448000/A3DCB4D229DE6FDE0DB5686DEE47145D/test_book.pdf");
-        String md5 = "\"A3DCB4D229DE6FDE0DB5686DEE47145D\"";
-        String locator = "\"test_book.pdf\"";
-        assertEquals(fullBookDescription.MakeLinkDownload(md5, locator), correct);
+        String md5case1= "\"A3DCB4D229DE6FDE0DB5686DEE47145D\"";
+        String md5case2 = "A3DCB4D229DE6FDE0DB5686DEE47145D";
+        String md5empty = "";
+
+        String locatorcase1 = "\"test_book.pdf\"";
+        String locatorcase2 = "test_book.pdf";
+        String locatorempty = "";
+
+        assertEquals(fullBookDescription.MakeLinkDownload(md5case1, locatorcase1), correct);
+        assertEquals(fullBookDescription.MakeLinkDownload(md5case2, locatorcase2), correct);
     }
 
 

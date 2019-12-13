@@ -39,7 +39,7 @@ public class ExampleInstrumentedTestClone {
             Thread.sleep(5000);
             assertTrue(!StaticDate.listFull.isEmpty());
         } catch (InterruptedException e) {
-            Log.e("ДЛЯ РОЗРОБОТЧИКА", "ТЫ НЕ СДАШЬ КУРСАЧ УЕБАН");
+            Log.e("ДЛЯ РОЗРОБОТЧИКА", "FIASKO BRATAN");
             e.printStackTrace();
         }
 
